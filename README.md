@@ -27,17 +27,34 @@ concepts used in automotive embedded software development.
 
 ## How to Build and Run
 ```bash
-# Build
 make
-
-# Run simulator
 ./rtos_sim
-
-# Run unit tests
 make test
-
-# Clean build files
 make clean
 ```
 
 ## Sample Output
+--- Tick 1 ---
+[RUN ] task='SpeedMonitor' priority=0
+SpeedMonitor: vehicle speed = 62 km/h
+[BLK ] task='SpeedMonitor' sleeping for 2 ticks
+--- Tick 2 ---
+[RUN ] task='Dashboard' priority=1
+Dashboard: updating display
+
+## Concepts Mapped to Real RTOS
+| This Project | FreeRTOS | QNX |
+|---|---|---|
+| TCB struct | TCB_t | pthread |
+| task_delay(n) | vTaskDelay(n) | delay() |
+| TASK_BLOCKED | eBlocked | CONDVAR |
+| pick_next_task() | Scheduler core | Pulse system |
+
+## Tech Stack
+- Language: C (C11 standard)
+- Build: GCC + Makefile
+- Testing: Custom unit tests with assert
+- Platform: Linux (Ubuntu)
+
+## Author
+Sujnan — Aspiring Embedded Software Engineer
